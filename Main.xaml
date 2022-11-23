@@ -147,11 +147,7 @@
       <Variable x:TypeArguments="x:String" Name="STR_reviewurl" />
       <Variable x:TypeArguments="s:String[]" Name="STR_splitreview" />
       <Variable x:TypeArguments="x:String" Name="STR_trim" />
-      <Variable x:TypeArguments="x:Int32" Name="INT_countexcel">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Int32" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="INT_countexcel" />
       <Variable x:TypeArguments="s:DateTime" Name="DATETIME" />
       <Variable x:TypeArguments="sd:DataTable" Name="DT_webtoonlist" />
       <Variable x:TypeArguments="x:String" Name="DESKTOP" />
@@ -175,7 +171,7 @@
           <av:PointCollection x:Key="ConnectorLocation">306,77.5 306,107.5 306.7,107.5 306.7,114.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <State x:Name="__ReferenceID2" DisplayName="3. State" sap:VirtualizedContainerService.HintSize="134,71" sap2010:WorkflowViewState.IdRef="State_1">
+      <State x:Name="__ReferenceID2" DisplayName="3. State" sap:VirtualizedContainerService.HintSize="446,507" sap2010:WorkflowViewState.IdRef="State_1">
         <State.Entry>
           <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="200,61" sap2010:WorkflowViewState.IdRef="ForEach`1_22" Values="[{&quot;Chrome&quot;, &quot;Excel&quot;}]">
             <ui:ForEach.Body>
@@ -227,9 +223,9 @@
           </Sequence>
         </State.Exit>
         <State.Transitions>
-          <Transition DisplayName="T1" sap:VirtualizedContainerService.HintSize="503,556" sap2010:WorkflowViewState.IdRef="Transition_7">
+          <Transition DisplayName="T1" sap:VirtualizedContainerService.HintSize="503,558" sap2010:WorkflowViewState.IdRef="Transition_7">
             <Transition.Trigger>
-              <Sequence DisplayName="폴더 확인" sap:VirtualizedContainerService.HintSize="400,90" sap2010:WorkflowViewState.IdRef="Sequence_73">
+              <Sequence DisplayName="폴더 확인" sap:VirtualizedContainerService.HintSize="400,578" sap2010:WorkflowViewState.IdRef="Sequence_73">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="ui:CurrentJobInfo" Name="STR_job" />
                 </Sequence.Variables>
@@ -239,8 +235,6 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:GetCurrentJobInfo DisplayName="Get Current Job Info" sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="GetCurrentJobInfo_4" Result="[STR_job]" />
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,101" sap2010:WorkflowViewState.IdRef="LogMessage_78" Level="Info" Message="[STR_job.WorkflowName]" />
                 <ui:GetEnvironmentFolder sap2010:Annotation.AnnotationText="내 문서 경로를 변수로 지정해준다" DisplayName="Get Environment Folder" FolderPath="[STR_folderexits]" sap:VirtualizedContainerService.HintSize="338,102" sap2010:WorkflowViewState.IdRef="GetEnvironmentFolder_6" SpecialFolder="MyDocuments">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -248,7 +242,6 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:GetEnvironmentFolder>
-                <ui:GetEnvironmentFolder DisplayName="Get Environment Folder" FolderPath="[DESKTOP]" sap:VirtualizedContainerService.HintSize="338,71" sap2010:WorkflowViewState.IdRef="GetEnvironmentFolder_7" SpecialFolder="Desktop" />
                 <ui:FolderExistsX sap2010:Annotation.AnnotationText="문서에 &quot;신혜은&quot; 폴더가 존재하는지 확인한다" DisplayName="Folder Exists" Exists="[STR_folder]" sap:VirtualizedContainerService.HintSize="338,173" sap2010:WorkflowViewState.IdRef="FolderExistsX_3" Path="[STR_folderexits+&quot;\신혜은&quot;]">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -267,16 +260,16 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <Transition.To>
-              <State x:Name="__ReferenceID0" DisplayName="6. State" sap:VirtualizedContainerService.HintSize="446,480" sap2010:WorkflowViewState.IdRef="State_5">
+              <State x:Name="__ReferenceID0" DisplayName="6. State" sap:VirtualizedContainerService.HintSize="134,71" sap2010:WorkflowViewState.IdRef="State_5">
                 <State.Entry>
-                  <Sequence DisplayName="데이터 가져오기" sap:VirtualizedContainerService.HintSize="400,240" sap2010:WorkflowViewState.IdRef="Sequence_76">
+                  <Sequence DisplayName="데이터 가져오기" sap:VirtualizedContainerService.HintSize="400,90" sap2010:WorkflowViewState.IdRef="Sequence_76">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <TryCatch sap2010:Annotation.AnnotationText="브라우저가 열리지 않거나 강제종료 될 수 있는 경우를 대비하여 오류처리를 해준다" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1146,11532" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                    <TryCatch sap2010:Annotation.AnnotationText="브라우저가 열리지 않거나 강제종료 될 수 있는 경우를 대비하여 오류처리를 해준다" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="440,506" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -424,7 +417,7 @@
                                     <uix:TargetAnchorable BrowserURL="https://comic.naver.com/webtoon/weekdayList?week=wed" DesignTimeRectangle="1155, 698, 19, 19" DesignTimeScaleFactor="1" ElementType="Icon" FriendlyName="'IMG'" FullSelectorArgument="&lt;webctrl aaname='리스트형' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='리스트형' tag='IMG' type='' class='' /&gt;" Guid="aca8a0d9-9b04-4f61-a94e-9cadbbc92122" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADVSURBVEhL1ZVRDoQgDES9//G4hr9+LnQd60hLBIKRbPbpaBzrWDDqIhOZGx5CkLdFlnVdBbImSSnu2yjpWCzqX+DkWeDCt20TiGZKNkYDvEdMuOF34QBhI7JUw6N8TltvAK8nHx4PjxSd56GWHdUYCFf2wT7svDEtCCW4CEd3Akco1qfh8HpiuO470+KL+6Au1zbCWcIL4PVUNgGP3DzQ1ovjYROWarh+S5RJneeORgWq4a6HYlby24vR3X9XQL3zItCBc7FVkKeSzA3Hwdsi//qDFvkC0ob2yJf01TQAAAAASUVORK5CYII=" InformativeScreenshot="ce617449cd84e2a31d8bdc491b7ecbb2.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='네이버 웹툰 &amp;gt; 요일별 웹툰 &amp;gt; 수요 웹툰' /&gt;" SearchSteps="FuzzySelector" Version="V1" Visibility="Interactive" />
                                   </uix:NClick.Target>
                                 </uix:NClick>
-                                <uix:NExtractData sap2010:Annotation.AnnotationText="웹툰의 제목, url, 업로드 날짜, 휴재 여부를 데이터 테이블 형식으로 추출해온다" AppendResults="False" ContinueOnError="True" DataTable="[DT_list1]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='새 열 0' ReferenceName='Column0'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='새 열 0 Url' ReferenceName='Column1'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='새 열 1' ReferenceName='Column2'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='새 열 2' ReferenceName='Column3'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='text' name2='Column1' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='strong' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='text'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='4' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='text'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="1012,208" sap2010:WorkflowViewState.IdRef="NExtractData_19" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="f4dde9c3-329b-401c-bf58-ae1033d7512e" Version="V3">
+                                <uix:NExtractData sap2010:Annotation.AnnotationText="웹툰의 제목, url, 업로드 날짜, 휴재 여부를 데이터 테이블 형식으로 추출해온다" AppendResults="False" ContinueOnError="True" DataTable="[DT_list1]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='새 열 0' ReferenceName='Column0'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='새 열 0 Url' ReferenceName='Column1'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='새 열 1' ReferenceName='Column2'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='새 열 2' ReferenceName='Column3'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='text' name2='Column1' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='strong' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='text'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='4' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='text'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="1012,208" sap2010:WorkflowViewState.IdRef="NExtractData_19" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="f4dde9c3-329b-401c-bf58-ae1033d7512e" Version="V3">
                                   <uix:NExtractData.Target>
                                     <uix:TargetAnchorable BrowserURL="https://comic.naver.com/webtoon/list?titleId=670143&amp;weekday=wed" DesignTimeRectangle="480, 546, 694, 624" DesignTimeScaleFactor="1" FriendlyName="'NAVER 만화다음'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TBODY' /&gt;" Guid="f7ae7378-b751-419f-9c77-8f25135660ce" InformativeScreenshot="b7dc2cacebf266902669b2f2a8a41e36.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='헬퍼 2 : 킬베로스 :: 네이버 웹툰' /&gt;" SearchSteps="Selector" Version="V1" Visibility="Interactive" />
                                   </uix:NExtractData.Target>
@@ -679,21 +672,11 @@
                                                     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="626,101" sap2010:WorkflowViewState.IdRef="LogMessage_69" Level="Info" Message="[&quot;엑셀 워크플로우 열기&quot;]" />
                                                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="엑셀.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="엑셀.xaml">
                                                       <ui:InvokeWorkflowFile.Arguments>
-                                                        <InArgument x:TypeArguments="x:String" x:Key="I_STR_folderexits">
-                                                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="STR_folderexits" />
-                                                        </InArgument>
-                                                        <InArgument x:TypeArguments="s:DateTime" x:Key="I_DATETIME">
-                                                          <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="DATETIME" />
-                                                        </InArgument>
-                                                        <InArgument x:TypeArguments="sd:DataTable" x:Key="I_DT_review">
-                                                          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="DT_review" />
-                                                        </InArgument>
-                                                        <InArgument x:TypeArguments="x:Int32" x:Key="I_INT_match">
-                                                          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="INT_match" />
-                                                        </InArgument>
-                                                        <InArgument x:TypeArguments="sd:DataTable" x:Key="I_DT_list1">
-                                                          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="DT_list1" />
-                                                        </InArgument>
+                                                        <InArgument x:TypeArguments="x:String" x:Key="I_STR_folderexits">[STR_folderexits]</InArgument>
+                                                        <InArgument x:TypeArguments="s:DateTime" x:Key="I_DATETIME">[DATETIME]</InArgument>
+                                                        <InArgument x:TypeArguments="sd:DataTable" x:Key="I_DT_review">[DT_review]</InArgument>
+                                                        <InArgument x:TypeArguments="x:Int32" x:Key="I_INT_match">[INT_match]</InArgument>
+                                                        <InArgument x:TypeArguments="sd:DataTable" x:Key="I_DT_list1">[DT_list1]</InArgument>
                                                       </ui:InvokeWorkflowFile.Arguments>
                                                     </ui:InvokeWorkflowFile>
                                                   </Sequence>
@@ -744,10 +727,10 @@
                         </uix:NApplicationCard>
                       </TryCatch.Try>
                       <TryCatch.Catches>
-                        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1112,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="406,292" sap2010:WorkflowViewState.IdRef="Catch`1_2">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
@@ -808,7 +791,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:ForEach>
-                    <ui:RenameFileX sap2010:Annotation.AnnotationText="엑셀 파일명을 조건대로 바꾸어준다" DisplayName="Rename File" FilePath="[STR_folderexits+&quot;\신혜은\교육09_네이버웹툰크롤링.xlsx&quot;]" sap:VirtualizedContainerService.HintSize="334,183" sap2010:WorkflowViewState.IdRef="RenameFileX_5" KeepExtension="True" NewName="[DateTime.Now.ToString(&quot;yyyy-MM-dd&quot;)+&quot;_&quot;+STR_trim+&quot;_네이버웹툰크롤링.xlsx&quot;]">
+                    <ui:RenameFileX sap2010:Annotation.AnnotationText="엑셀 파일명을 조건대로 바꾸어준다" DisplayName="Rename File" FilePath="[STR_folderexits+&quot;\신혜은\교육09_네이버웹툰크롤링.xlsx&quot;]" sap:VirtualizedContainerService.HintSize="338,103" sap2010:WorkflowViewState.IdRef="RenameFileX_5" KeepExtension="True" NewName="[DateTime.Now.ToString(&quot;yyyy-MM-dd&quot;)+&quot;_&quot;+STR_trim+&quot;_네이버웹툰크롤링.xlsx&quot;]">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -839,7 +822,7 @@
                     <Transition.To>
                       <State x:Name="__ReferenceID1" DisplayName="9. Final State" sap:VirtualizedContainerService.HintSize="134,71" sap2010:WorkflowViewState.IdRef="State_3" IsFinal="True">
                         <State.Entry>
-                          <Sequence DisplayName="10. 메일 발송" sap:VirtualizedContainerService.HintSize="400,90" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                          <Sequence DisplayName="10. 메일 발송" sap:VirtualizedContainerService.HintSize="400,844" sap2010:WorkflowViewState.IdRef="Sequence_42">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -920,7 +903,7 @@
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:CreateDirectory>
                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,101" sap2010:WorkflowViewState.IdRef="LogMessage_82" Level="Info" Message="[&quot;'신혜은'폴더 생성&quot;]" />
-                <ui:CopyFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="바탕화면에 있는 엑셀 파일을 복사해온다" Destination="[STR_folderexits+&quot;\신혜은&quot;]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="338,194" sap2010:WorkflowViewState.IdRef="CopyFile_3" Path="[DESKTOP+&quot;\교육09_네이버웹툰크롤링.xlsx&quot;]">
+                <ui:CopyFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Data 폴더에 있는 엑셀 파일을 복사해온다" Destination="[STR_folderexits+&quot;\신혜은&quot;]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="338,194" sap2010:WorkflowViewState.IdRef="CopyFile_3" Path="Data\교육09_네이버웹툰크롤링.xlsx">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -934,7 +917,7 @@
           </Transition>
           <Transition DisplayName="T3" sap:VirtualizedContainerService.HintSize="503,556" sap2010:WorkflowViewState.IdRef="Transition_8">
             <Transition.Trigger>
-              <Sequence DisplayName="폴더 확인" sap:VirtualizedContainerService.HintSize="400,90" sap2010:WorkflowViewState.IdRef="Sequence_78">
+              <Sequence DisplayName="폴더 확인" sap:VirtualizedContainerService.HintSize="400,578" sap2010:WorkflowViewState.IdRef="Sequence_78">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="ui:CurrentJobInfo" Name="STR_job" />
                 </Sequence.Variables>
@@ -944,8 +927,6 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:GetCurrentJobInfo DisplayName="Get Current Job Info" sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="GetCurrentJobInfo_5" Result="[STR_job]" />
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,101" sap2010:WorkflowViewState.IdRef="LogMessage_87" Level="Info" Message="[STR_job.WorkflowName]" />
                 <ui:GetEnvironmentFolder sap2010:Annotation.AnnotationText="내 문서 경로를 변수로 지정해준다" DisplayName="Get Environment Folder" FolderPath="[STR_folderexits]" sap:VirtualizedContainerService.HintSize="338,102" sap2010:WorkflowViewState.IdRef="GetEnvironmentFolder_8" SpecialFolder="MyDocuments">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -953,7 +934,6 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:GetEnvironmentFolder>
-                <ui:GetEnvironmentFolder DisplayName="Get Environment Folder" FolderPath="[DESKTOP]" sap:VirtualizedContainerService.HintSize="338,71" sap2010:WorkflowViewState.IdRef="GetEnvironmentFolder_9" SpecialFolder="Desktop" />
                 <ui:FolderExistsX sap2010:Annotation.AnnotationText="문서에 &quot;신혜은&quot; 폴더가 존재하는지 확인한다" DisplayName="Folder Exists" Exists="[STR_folder]" sap:VirtualizedContainerService.HintSize="338,173" sap2010:WorkflowViewState.IdRef="FolderExistsX_4" Path="[STR_folderexits+&quot;\신혜은&quot;]">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -993,7 +973,7 @@
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:CreateDirectory>
                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,101" sap2010:WorkflowViewState.IdRef="LogMessage_90" Level="Info" Message="[&quot;'신혜은 폴더 생성'&quot;]" />
-                <ui:CopyFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="바탕화면에 있는 엑셀 파일을 복사해온다" Destination="[STR_folderexits+&quot;\신혜은&quot;]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="338,194" sap2010:WorkflowViewState.IdRef="CopyFile_5" Path="[DESKTOP+&quot;\교육09_네이버웹툰크롤링.xlsx&quot;]">
+                <ui:CopyFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Data 폴더에 있는 엑셀 파일을 복사해온다" Destination="[STR_folderexits+&quot;\신혜은&quot;]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="338,194" sap2010:WorkflowViewState.IdRef="CopyFile_5" Path="Data\교육09_네이버웹툰크롤링.xlsx">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
